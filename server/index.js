@@ -96,9 +96,9 @@ global.toId = Dex.getId;
 global.LoginServer = require('./loginserver');
 
 global.Ladders = require('./ladders');
-global.FTN = {};
+global.Server = {};
 
-global.FTN = require('./FTN.js').FTN;
+global.Server = require('./Server.js').Server;
 global.Chat = require('./chat');
 
 global.Users = require('./users');
