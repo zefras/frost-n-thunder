@@ -6,15 +6,15 @@ const Autolinker = require('autolinker');
 
 let regdateCache = {};
 
-exports.FTN = {
+exports.Server = {
 	nameColor: function (name, bold, userGroup) {
 		let userGroupSymbol = Users.usergroups[toId(name)] ? '<b><font color=#948A88>' + Users.usergroups[toId(name)].substr(0, 1) + '</font></b>' : "";
-		return (userGroup ? userGroupSymbol : "") + (bold ? "<b>" : "") + "<font color=" + FTN.hashColor(name) + ">" + (Users(name) && Users(name).connected && Users.getExact(name) ? Chat.escapeHTML(Users.getExact(name).name) : Chat.escapeHTML(name)) + "</font>" + (bold ? "</b>" : "");
+		return (userGroup ? userGroupSymbol : "") + (bold ? "<b>" : "") + "<font color=" + Server.hashColor(name) + ">" + (Users(name) && Users(name).connected && Users.getExact(name) ? Chat.escapeHTML(Users.getExact(name).name) : Chat.escapeHTML(name)) + "</font>" + (bold ? "</b>" : "");
 	},
-	// usage: FTN.nameColor(user.name, true) for bold OR FTN.nameColor(user.name, false) for non-bolded.
+	// usage: Server.nameColor(user.name, true) for bold OR Server.nameColor(user.name, false) for non-bolded.
 
 	messageSeniorStaff: function (message, pmName, from) {
-		pmName = (pmName ? pmName : '~' + serverName + ' FTN');
+		pmName = (pmName ? pmName : '~' + serverName + ' Server');
 		from = (from ? ' (PM from ' + from + ')' : '');
 		Users.users.forEach(curUser => {
 			if (curUser.can('roomowner')) {
@@ -22,11 +22,11 @@ exports.FTN = {
 			}
 		});
 	},
-	// format: FTN.messageSeniorStaff('message', 'person')
+	// format: Server.messageSeniorStaff('message', 'person')
 	//
-	// usage: FTN.messageSeniorStaff('Mystifi is a confirmed user and they were banned from a public room. Assess the situation immediately.', '~FTN')
+	// usage: Server.messageSeniorStaff('Mystifi is a confirmed user and they were banned from a public room. Assess the situation immediately.', '~Server')
 	//
-	// this makes a PM from ~FTN stating the message
+	// this makes a PM from ~Server stating the message
 
 	regdate: function (target, callback) {
 		target = toId(target);
@@ -788,7 +788,7 @@ exports.FTN = {
 	},
 };
 
-// last two functions needed to make sure FTN.regdate() fully works
+// last two functions needed to make sure Server.regdate() fully works
 function loadRegdateCache() {
 	try {
 		regdateCache = JSON.parse(FS('config/regdate.json').readIfExistsSync());
